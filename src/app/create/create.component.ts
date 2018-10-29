@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { AppState } from './../app.state';
 import { Tutorial } from './../models/tutorial.model';
-import * as TutorialActions from './../actions/tutorial.actions';
-import { Observable } from 'rxjs';
+import { EntityServices, EntityCollectionService } from 'ngrx-data';
 
 @Component({
   selector: 'app-create',
@@ -11,14 +8,17 @@ import { Observable } from 'rxjs';
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent implements OnInit {
+  tutorialService: EntityCollectionService<Tutorial>;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(entityServices: EntityServices) {
+    this.tutorialService = entityServices.getEntityCollectionService('Tutorial');
+  }
 
   addTutorial(name, url) {
-    this.store.dispatch(new TutorialActions.AddTutorial({name: name, url: url}) )
+    let tutorial: Tutorial = {url: url, name: name};
+    this.tutorialService.add(tutorial).subscribe(r => console.log());
   }
 
   ngOnInit() {
   }
-
 }
