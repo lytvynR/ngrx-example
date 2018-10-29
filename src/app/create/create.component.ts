@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Tutorial } from './../models/tutorial.model';
 import { EntityServices, EntityCollectionService } from 'ngrx-data';
+import { EntityNames } from '../constants/entity.constants';
 
 @Component({
   selector: 'app-create',
@@ -11,12 +12,12 @@ export class CreateComponent implements OnInit {
   tutorialService: EntityCollectionService<Tutorial>;
 
   constructor(entityServices: EntityServices) {
-    this.tutorialService = entityServices.getEntityCollectionService('Tutorial');
+    this.tutorialService = entityServices.getEntityCollectionService(EntityNames.tutorial);
   }
 
   addTutorial(name, url) {
-    let tutorial: Tutorial = {url: url, name: name};
-    this.tutorialService.add(tutorial).subscribe(r => console.log());
+    let tutorial: Tutorial = { url: url, name: name };
+    this.tutorialService.add(tutorial);
   }
 
   ngOnInit() {

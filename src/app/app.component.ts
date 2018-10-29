@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { EntityServices } from 'ngrx-data';
+import { EntityNames } from './constants/entity.constants';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ngrx-example';
+  constructor(entityServices: EntityServices) {
+    entityServices.getEntityCollectionService(EntityNames.tutorial).getAll();
+  }
 }

@@ -4,10 +4,11 @@ import {
   EntityCollectionServiceElementsFactory
 } from 'ngrx-data';
 import { Tutorial } from '../models/tutorial.model';
+import { EntityNames } from '../constants/entity.constants';
 
 @Injectable({ providedIn: 'root' })
 export class TutorialService extends EntityCollectionServiceBase<Tutorial> {
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory) {
-    super('Tutorial', serviceElementsFactory);
+    super(EntityNames.tutorial, serviceElementsFactory);
   }
 }

@@ -1,10 +1,11 @@
 import { EntityMetadataMap } from 'ngrx-data';
+import { EntityNames } from './constants/entity.constants';
 
 const entityMetadata: EntityMetadataMap = {
-  Tutorial: {},
+  [EntityNames.tutorial]: {},
 };
 
-const pluralNames = { Tutorial: 'Tutorials' };
+const pluralNames = { [EntityNames.tutorial]: EntityNames.tutorial };
 
 export const entityConfig = {
   entityMetadata,

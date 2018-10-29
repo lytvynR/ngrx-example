@@ -1,15 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { EntityCollectionServiceElementsFactory } from 'ngrx-data';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { ReadComponent } from './read/read.component';
 import { CreateComponent } from './create/create.component';
-import { TutorialService } from './services/tutorial.service';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EntityStoreModule } from './entity-store.module';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
 
 
 @NgModule({
@@ -26,7 +26,8 @@ import { EntityStoreModule } from './entity-store.module';
     StoreDevtoolsModule.instrument({
       maxAge: 25
     }),
-    EntityStoreModule
+    InMemoryWebApiModule.forRoot(InMemoryDataService),
+    EntityStoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
