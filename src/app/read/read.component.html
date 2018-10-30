@@ -1,9 +1,8 @@
-<div class="right, tutorials-container" *ngIf="tutorials$ | async as tutorials">
+<div class="tutorials-container" *ngIf="tutorials$ | async as tutorials">
   <button class="tutorial-refresh-button" (click)="refresh()">refresh</button>
   <h3>Tutorials</h3>
-  <ul>
-    <li (click)='removeTutorial(tutorial)' *ngFor="let tutorial of tutorials">
-      <a href="javascript:void(0)" target="_blank">{{ tutorial.name }}</a>
-    </li>
-  </ul>
+  <div class="list-item" *ngFor="let tutorial of tutorials">
+    <span target="_blank">Name: {{tutorial.name ? tutorial.name : "None"}} Url: {{ tutorial.url ? tutorial.url : "None"}}</span>
+    <button class="tutorial-delete-button" (click)="removeTutorial(tutorial)">delete</button>
+  </div>
 </div>
